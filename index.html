@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>LICRO — Your AI companion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="LICRO is an AI companion that understands, thinks, remembers, searches, speaks and acts.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+<div id="load" role="status"><div><p>INITIALIZING LICRO</p><i></i></div></div>
+<canvas id="gl" aria-hidden="true"></canvas><div class="vig"></div><div id="prog"></div>
+<nav aria-label="Primary"><a class="lg" href="#" data-go="0">LICRO</a>
+<div class="nl" id="nl"><a href="#" data-go="1">Explore</a><a href="#" data-go="4">Experience</a><a href="#" data-go="5">Capabilities</a><a href="#" data-go="3">Memory</a><a href="#" data-go="6">Workspaces</a><a href="#" data-go="11">About</a></div>
+<div style="display:flex;gap:.6rem;align-items:center"><button class="ck" id="ck" aria-label="Open command palette">Ctrl K</button><button class="nb" id="nb" aria-expanded="false" aria-controls="nl">Menu</button><button class="btn mag" data-enter>Enter LICRO</button></div></nav>
+<div id="hud" role="status" aria-live="polite"><i></i><span id="hs">IDLE</span></div>
+<main>
+<section class="s"><div class="in"><p class="lab">LICRO // Boot</p><h1 class="h">Meet LICRO.</h1><p class="sub">An AI companion built to move with you.</p><p class="cue">Scroll</p></div></section>
+<section class="s"><div class="in"><p class="lab">02 — Awakening</p><h2 class="h">Not just a chatbot.</h2><p class="sub big">A system that understands.</p></div></section>
+<section class="s"><div class="in"><p class="lab">03 — Understanding</p><h2 class="h">You speak. LICRO understands.</h2>
+<div class="chips" role="group" aria-label="Language"><button class="chip" data-l="AUTO" aria-pressed="true">AUTO</button><button class="chip" data-l="ENGLISH" aria-pressed="false">ENGLISH</button><button class="chip" data-l="TELUGU" aria-pressed="false">TELUGU</button><button class="chip" data-l="HINDI" aria-pressed="false">HINDI</button><button class="chip" data-l="TAMIL" aria-pressed="false">TAMIL</button><button class="chip" data-l="KANNADA" aria-pressed="false">KANNADA</button><button class="chip" data-l="MALAYALAM" aria-pressed="false">MALAYALAM</button></div>
+<p class="quote" id="lq" aria-live="polite"></p><p class="lab" id="ld" style="margin-top:.8rem"></p></div></section>
+<section class="s"><div class="in"><div class="mw" aria-hidden="true"><span style="--l:4%;--t:8%;--dl:0s">Career goals</span><span style="--l:74%;--t:4%;--dl:1.5s">Learning</span><span style="--l:0%;--t:70%;--dl:3s">Projects</span><span style="--l:76%;--t:76%;--dl:4.5s">Preferences</span><span style="--l:36%;--t:96%;--dl:6s">Conversations</span><span style="--l:40%;--t:-4%;--dl:7.5s">Research</span></div>
+<p class="lab">04 — Memory</p><h2 class="h">It remembers what matters.</h2><p class="sub">Persistent context, private by design. You decide what stays.</p></div></section>
+<section class="s"><div class="in"><p class="lab">05 — Thinking</p><h2 class="h">From thought to action.</h2>
+<div class="pipe" id="p1"><b>UNDERSTANDING</b><i>↓</i><b>PLANNING</b><i>↓</i><b>REASONING</b><i>↓</i><b>EXECUTING</b></div><p class="sub">High-level activity only — never private reasoning.</p></div></section>
+<section class="s"><div class="in"><p class="lab">06 — Agentic action</p><h2 class="h">Don't just ask. Let it act.</h2>
+<div class="chips" id="tools"><button class="chip">Search</button><button class="chip">Files</button><button class="chip">Calendar</button><button class="chip">Jobs</button><button class="chip">Research</button><button class="chip">Learning</button><button class="chip">Projects</button><button class="chip">Automation</button></div></div></section>
+<section class="s"><div class="in"><p class="lab">07 — Workspaces</p><h2 class="h">Five spaces. One mind.</h2>
+<div class="chips" id="ws" role="group" aria-label="Workspaces"><button class="chip" data-w="personal" aria-pressed="true">PERSONAL</button><button class="chip" data-w="career" aria-pressed="false">CAREER</button><button class="chip" data-w="learning" aria-pressed="false">LEARNING</button><button class="chip" data-w="projects" aria-pressed="false">PROJECTS</button><button class="chip" data-w="research" aria-pressed="false">RESEARCH</button></div><p class="sub" id="wd"></p></div></section>
+<section class="s"><div class="in"><p class="lab">08 — Voice</p><h2 class="h">Talk naturally.</h2>
+<div class="pipe" id="p2"><b>MIC</b><i>→</i><b>SPEECH</b><i>→</i><b>LICRO</b><i>→</i><b>RESPONSE</b></div>
+<button class="mic mag" id="mic" aria-pressed="false" aria-label="Toggle microphone"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></button>
+<canvas id="wv" aria-hidden="true"></canvas><p class="sub">English · తెలుగు · हिन्दी · தமிழ் · ಕನ್ನಡ · മലയാളം · mixed</p></div></section>
+<section class="s"><div class="in"><p class="lab">09 — Personality</p><h2 class="h">An AI that feels human.</h2><div class="chips"><span class="chip">Friendly</span><span class="chip">Intelligent</span><span class="chip">Calm</span><span class="chip">Futuristic</span></div></div></section>
+<section class="s"><div class="in"><p class="lab">10 — Command center</p><h2 class="h">Press <kbd>Ctrl</kbd> + <kbd>K</kbd></h2><p class="sub">Search the web · Open Career workspace · Analyze this file · Start voice mode</p><div class="row"><button class="btn g mag" data-pal>Open command palette</button></div></div></section>
+<section class="s"><div class="in"><p class="lab">11 — AI states</p><h2 class="h">Every state, alive.</h2>
+<div class="chips" id="sts" role="group" aria-label="AI states"><button class="chip" data-s="idle">IDLE</button><button class="chip" data-s="listening">LISTENING</button><button class="chip" data-s="thinking">THINKING</button><button class="chip" data-s="searching">SEARCHING</button><button class="chip" data-s="executing">EXECUTING</button><button class="chip" data-s="speaking">SPEAKING</button><button class="chip er" data-s="error">ERROR</button></div></div></section>
+<section class="s"><div class="in"><p class="lab">12 — The living system</p><h2 class="h">One intelligence. Many possibilities.</h2></div></section>
+<section class="s"><div class="in"><h2 class="h">Meet LICRO.</h2><p class="sub">Your AI companion for what's next.</p><div class="row"><button class="btn mag" data-enter>Enter LICRO</button><button class="btn g mag" data-go="10">Explore the system</button></div></div></section>
+</main>
+<div id="pal" role="dialog" aria-modal="true" aria-label="Command palette"><div class="pb"><input id="pi" placeholder="Type a command…" aria-label="Command" autocomplete="off"><ul id="pl" role="listbox"></ul><small>↑↓ navigate · Enter run · Esc close</small></div></div>
+<button class="btn mag" id="cb" aria-controls="cp">Talk to LICRO</button>
+<aside id="cp" role="dialog" aria-label="LICRO chat"><header><b>LICRO</b><span id="bs">…</span><button id="mt">Memory (0)</button><button id="cx" aria-label="Close chat">×</button></header><div id="cl" aria-live="polite"></div><div id="ml" hidden></div><input id="ci" placeholder="Ask LICRO, or say “remember …”" aria-label="Message LICRO" autocomplete="off"></aside>
+<div id="toast" role="status"></div><div id="cur"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/brain.js"></script>
+</body></html>
