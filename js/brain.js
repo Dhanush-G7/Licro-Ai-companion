@@ -127,7 +127,10 @@ async function converse(t){
  if(m){try{await memAdd(m[1].slice(0,300));add('a','Remembered.');L.act('thinking','Saved to memory.',1800)}
   catch(e){L.setF('error',3000);add('a','I couldn’t save that. Please try again.')}return}
  busy=true;L.setF('thinking',600);const b=add('a','…');
- setTimeout(()=>{const r=localReply(t);b.textContent=r.text;
+ setTimeout(()=>{
+  const cas=window.LICRO_CASUAL&&window.LICRO_CASUAL.match(t);
+  if(cas!=null){b.textContent=cas;speak(cas);busy=false;return}
+  const r=localReply(t);b.textContent=r.text;
   if(r.ok){speak(r.text)}else{L.setF('error',1500)}
   busy=false},550);
 }
