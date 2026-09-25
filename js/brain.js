@@ -145,21 +145,23 @@ rm();status();
 
 /* ---------- voice input: speak to the mic in the Voice section ---------- */
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-let rec=null,recOn=false;
+let rec=null,recOn=false,restartT=null;
 const RLANG={AUTO:'en-IN',ENGLISH:'en-IN',TELUGU:'te-IN',HINDI:'hi-IN',TAMIL:'ta-IN',KANNADA:'kn-IN',MALAYALAM:'ml-IN'};
 function currentRecLang(){const b=document.querySelector('[data-l][aria-pressed="true"]');return RLANG[b&&b.dataset.l]||'en-IN'}
 function startRec(){
- if(!SR){L.toast('Voice input isn\u2019t supported in this browser.',1);return}
+ if(!SR){L.toast('Voice input isn\u2019t supported in this browser. Try Chrome or Edge.',1);return}
+ if(rec)return;
  try{
   rec=new SR();rec.lang=currentRecLang();rec.interimResults=false;rec.maxAlternatives=1;rec.continuous=false;
   rec.onresult=e=>{const t=e.results[e.results.length-1][0].transcript.trim();if(t){open();add('u',t);converse(t)}};
-  rec.onerror=()=>{};
-  rec.onend=()=>{if(recOn)try{rec.start()}catch(e){}};
+  rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){recOn=false;L.toast('Microphone permission is blocked for voice input.',1)}};
+  rec.onend=()=>{rec=null;if(recOn){clearTimeout(restartT);restartT=setTimeout(startRec,250)}};
   rec.start();recOn=true;
- }catch(e){}
+ }catch(e){rec=null}
 }
-function stopRec(){recOn=false;try{rec&&rec.stop()}catch(e){}rec=null}
-$('#mic').addEventListener('click',()=>{
- setTimeout(()=>{const on=$('#mic').getAttribute('aria-pressed')==='true';on?startRec():stopRec()},0);
-});
+function stopRec(){recOn=false;clearTimeout(restartT);if(rec){try{rec.stop()}catch(e){}rec=null}}
+new MutationObserver(()=>{
+ const on=$('#mic').getAttribute('aria-pressed')==='true';
+ on?startRec():stopRec();
+}).observe($('#mic'),{attributes:true,attributeFilter:['aria-pressed']});
 })();
