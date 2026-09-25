@@ -154,7 +154,10 @@ function startRec(){
  try{
   rec=new SR();rec.lang=currentRecLang();rec.interimResults=false;rec.maxAlternatives=1;rec.continuous=false;
   rec.onresult=e=>{const t=e.results[e.results.length-1][0].transcript.trim();if(t){open();add('u',t);converse(t)}};
-  rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){recOn=false;L.toast('Microphone permission is blocked for voice input.',1)}};
+  rec.onerror=e=>{
+   if(e.error==='not-allowed'||e.error==='service-not-allowed'){recOn=false;L.toast('Microphone permission is blocked for voice input.',1)}
+   else if(e.error==='network'){recOn=false;L.toast('Voice input needs this page opened via http/https (not double-clicked as a file), and an internet connection.',1)}
+  };
   rec.onend=()=>{rec=null;if(recOn){clearTimeout(restartT);restartT=setTimeout(startRec,250)}};
   rec.start();recOn=true;
  }catch(e){rec=null}
